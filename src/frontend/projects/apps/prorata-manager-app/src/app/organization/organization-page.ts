@@ -100,7 +100,7 @@ export class OrganizationPage {
   private readonly organizations = inject(OrganizationService);
 
   protected readonly kinds = MANAGER_KINDS;
-  protected readonly canEdit = inject(SessionStore).user()!.role === 'ManagerAdmin';
+  protected readonly canEdit = inject(SessionStore).isAdmin();
   protected readonly loaded = signal(false);
   protected readonly loadFailed = signal(false);
   protected readonly saved = signal(false);

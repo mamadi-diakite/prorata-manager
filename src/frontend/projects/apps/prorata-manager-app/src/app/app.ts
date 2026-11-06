@@ -12,6 +12,7 @@ import { Shell } from '@prorata-manager/shared/ui';
       <ng-container shellNav>
         @if (user(); as user) {
           <span class="text-slate-600" data-testid="user-name">{{ user.displayName }}</span>
+          <a routerLink="/sites" class="text-indigo-600">Sites</a>
           <a routerLink="/organization" class="text-indigo-600">Organization</a>
           <a routerLink="/account/password" class="text-indigo-600">Change password</a>
           <button type="button" class="text-indigo-600" (click)="logOut()">Log out</button>

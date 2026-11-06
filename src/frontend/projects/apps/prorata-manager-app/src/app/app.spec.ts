@@ -26,7 +26,7 @@ describe('App', () => {
     await app.open('/');
 
     expect(app.text('[data-testid="user-name"]')).toBe('Claire Martin');
-    expect(app.texts('header nav a')).toEqual(['Organization', 'Change password']);
+    expect(app.texts('header nav a')).toEqual(['Sites', 'Organization', 'Change password']);
 
     app.button('header nav button').click();
     await app.settle();

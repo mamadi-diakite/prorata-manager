@@ -60,8 +60,20 @@ export class AppHarness {
     await this.fixture.whenStable();
   }
 
-  async submit(): Promise<void> {
-    this.element.querySelector<HTMLButtonElement>('form button[type="submit"]')!.click();
+  async select(id: string, value: string): Promise<void> {
+    const select = this.element.querySelector<HTMLSelectElement>(`#${id}`)!;
+    select.value = value;
+    select.dispatchEvent(new Event('change'));
+    await this.fixture.whenStable();
+  }
+
+  async click(selector: string): Promise<void> {
+    this.element.querySelector<HTMLElement>(selector)!.click();
+    await this.fixture.whenStable();
+  }
+
+  async submit(form = 'form'): Promise<void> {
+    this.element.querySelector<HTMLButtonElement>(`${form} button[type="submit"]`)!.click();
     await this.fixture.whenStable();
   }
 

@@ -7,6 +7,16 @@ export const authGuard: CanActivateFn = (_route, state) =>
   inject(SessionStore).token() !== null ||
   inject(Router).createUrlTree(['/login'], { queryParams: { returnUrl: state.url } });
 
+/** Pages only a manager admin may open; staff members are sent to the site list. */
+export const adminGuard: CanActivateFn = (route, state) => {
+  const session = inject(SessionStore);
+  if (session.token() === null) {
+    return authGuard(route, state);
+  }
+
+  return session.isAdmin() || inject(Router).createUrlTree(['/sites']);
+};
+
 /** Keeps signed-in users away from the login and registration pages. */
 export const guestGuard: CanActivateFn = () =>
   inject(SessionStore).token() === null || inject(Router).createUrlTree(['/']);

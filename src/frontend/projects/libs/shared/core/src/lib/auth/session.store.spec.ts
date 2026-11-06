@@ -31,6 +31,17 @@ describe('SessionStore', () => {
 
     expect(store.token()).toBeNull();
     expect(store.user()).toBeNull();
+    expect(store.isAdmin()).toBe(false);
+  });
+
+  it('tells whether the user is a manager admin', () => {
+    const store = TestBed.inject(SessionStore);
+
+    store.start(session());
+    expect(store.isAdmin()).toBe(true);
+
+    store.start({ ...session(), user: { ...session().user, role: 'ManagerStaff' } });
+    expect(store.isAdmin()).toBe(false);
   });
 
   it('keeps a started session in local storage until it is cleared', () => {

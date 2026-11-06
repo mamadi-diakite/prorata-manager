@@ -6,7 +6,8 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { authGuard, guestGuard, safeReturnUrl } from './auth.guards';
+import { adminGuard, authGuard, guestGuard, safeReturnUrl } from './auth.guards';
+import { UserRole } from './auth.models';
 import { SessionStore } from './session.store';
 
 describe('auth guards', () => {
@@ -18,7 +19,7 @@ describe('auth guards', () => {
     TestBed.configureTestingModule({ providers: [provideRouter([])] });
   });
 
-  function signIn(): void {
+  function signIn(role: UserRole = 'ManagerAdmin'): void {
     TestBed.inject(SessionStore).start({
       accessToken: 'token-1',
       expiresAtUtc: '2999-01-01T00:00:00Z',
@@ -26,11 +27,29 @@ describe('auth guards', () => {
         id: 'user-1',
         email: 'claire.martin@example.com',
         displayName: 'Claire Martin',
-        role: 'ManagerAdmin',
+        role,
         organizationId: 'organization-1',
       },
     });
   }
+
+  it('sends visitors of admin pages to login', () => {
+    const result = TestBed.runInInjectionContext(() => adminGuard(route, state));
+
+    expect(serialize(result)).toBe('/login?returnUrl=%2Faccount%2Fpassword');
+  });
+
+  it('lets admins through admin pages', () => {
+    signIn();
+
+    expect(TestBed.runInInjectionContext(() => adminGuard(route, state))).toBe(true);
+  });
+
+  it('sends staff members from admin pages to the site list', () => {
+    signIn('ManagerStaff');
+
+    expect(serialize(TestBed.runInInjectionContext(() => adminGuard(route, state)))).toBe('/sites');
+  });
 
   function serialize(result: unknown): string {
     return TestBed.inject(Router).serializeUrl(result as UrlTree);

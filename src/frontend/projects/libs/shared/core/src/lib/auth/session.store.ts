@@ -9,6 +9,7 @@ export class SessionStore {
   private readonly session = signal<LoginResponse | null>(readStoredSession());
 
   readonly user = computed(() => this.session()?.user ?? null);
+  readonly isAdmin = computed(() => this.user()?.role === 'ManagerAdmin');
 
   /** The access token, or `null` when nobody is signed in or the session has expired. */
   token(): string | null {
