@@ -1,0 +1,92 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "npm"
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "prorata-manager-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/apps/prorata-manager-app",
+      "sourceRoot": "projects/apps/prorata-manager-app/src",
+      "prefix": "pm",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/apps/prorata-manager-app/src/main.ts",
+            "tsConfig": "projects/apps/prorata-manager-app/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/apps/prorata-manager-app/public"
+              }
+            ],
+            "styles": [
+              "projects/apps/prorata-manager-app/src/styles.css"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "prorata-manager-app:build:production"
+            },
+            "development": {
+              "buildTarget": "prorata-manager-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "projects/apps/prorata-manager-app/proxy.conf.json"
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "include": [
+              "**/*.spec.ts",
+              "../../../libs/**/*.spec.ts"
+            ],
+            "coverageInclude": [
+              "projects/apps/prorata-manager-app/src/app/**/*.ts",
+              "projects/libs/**/src/lib/**/*.ts"
+            ],
+            "coverageThresholds": {
+              "statements": 100,
+              "branches": 100,
+              "functions": 100,
+              "lines": 100
+            }
+          }
+        }
+      }
+    }
+  }
+}
