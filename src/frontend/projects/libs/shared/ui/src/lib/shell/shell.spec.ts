@@ -7,7 +7,8 @@ import { Shell } from './shell';
 @Component({
   imports: [Shell],
   template: `<pm-shell appName="Prorata Manager" [apiStatus]="status()"
-    ><p>Page content</p></pm-shell
+    ><a shellNav href="/login">Log in</a>
+    <p>Page content</p></pm-shell
   >`,
 })
 class Host {
@@ -28,6 +29,7 @@ describe('Shell', () => {
     expect(home?.textContent?.trim()).toBe('Prorata Manager');
     expect(home?.getAttribute('href')).toBe('/');
     expect(element.querySelector('main p')?.textContent).toBe('Page content');
+    expect(element.querySelector('header nav a')?.textContent).toBe('Log in');
   });
 
   it.each([
