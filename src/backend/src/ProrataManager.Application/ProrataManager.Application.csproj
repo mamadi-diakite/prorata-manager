@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProrataManager.Application.Contracts\ProrataManager.Application.Contracts.csproj" />
+    <ProjectReference Include="..\ProrataManager.Domain\ProrataManager.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ProrataManager.Api/ProrataManager.Api.csproj" />
+    <Project Path="src/ProrataManager.Application.Contracts/ProrataManager.Application.Contracts.csproj" />
+    <Project Path="src/ProrataManager.Application/ProrataManager.Application.csproj" />
+    <Project Path="src/ProrataManager.Domain/ProrataManager.Domain.csproj" />
+    <Project Path="src/ProrataManager.Infrastructure/ProrataManager.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ProrataManager.Api.IntegrationTests/ProrataManager.Api.IntegrationTests.csproj" />
+    <Project Path="tests/ProrataManager.Application.Tests/ProrataManager.Application.Tests.csproj" />
+  </Folder>
+</Solution>
