@@ -1,7 +1,13 @@
+global using Microsoft.AspNetCore.Identity;
 global using Microsoft.Data.Sqlite;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using ProrataManager.Application.Security;
+global using ProrataManager.Application.Users;
 global using ProrataManager.Domain;
 global using ProrataManager.Infrastructure.Persistence;
+global using ProrataManager.Infrastructure.Security;
+global using ProrataManager.Infrastructure.Seeding;

@@ -1,2 +1,14 @@
+global using System.Security.Claims;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.IdentityModel.JsonWebTokens;
+global using Microsoft.IdentityModel.Tokens;
+global using ProrataManager.Api.Auth;
+global using ProrataManager.Application;
+global using ProrataManager.Application.Auth;
+global using ProrataManager.Application.Contracts.Auth;
+global using ProrataManager.Application.Contracts.Organizations;
+global using ProrataManager.Application.Organizations;
+global using ProrataManager.Domain;
 global using ProrataManager.Infrastructure;

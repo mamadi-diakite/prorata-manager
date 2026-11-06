@@ -1,0 +1,9 @@
+global using Microsoft.Extensions.DependencyInjection;
+global using ProrataManager.Application.Auth;
+global using ProrataManager.Application.Contracts.Auth;
+global using ProrataManager.Application.Contracts.Organizations;
+global using ProrataManager.Application.Organizations;
+global using ProrataManager.Application.Security;
+global using ProrataManager.Application.Users;
+global using ProrataManager.Domain;
+global using Xunit;

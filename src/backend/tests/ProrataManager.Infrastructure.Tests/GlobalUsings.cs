@@ -1,6 +1,10 @@
 global using Microsoft.Data.Sqlite;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.DependencyInjection;
+global using ProrataManager.Application.Security;
+global using ProrataManager.Application.Users;
 global using ProrataManager.Domain;
 global using ProrataManager.Infrastructure.Persistence;
+global using ProrataManager.Infrastructure.Security;
+global using ProrataManager.Infrastructure.Seeding;
 global using Xunit;
