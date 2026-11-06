@@ -4,4 +4,8 @@
     <ProjectReference Include="..\ProrataManager.Application\ProrataManager.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.*" />
+  </ItemGroup>
+
 </Project>

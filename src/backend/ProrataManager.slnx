@@ -9,5 +9,7 @@
   <Folder Name="/tests/">
     <Project Path="tests/ProrataManager.Api.IntegrationTests/ProrataManager.Api.IntegrationTests.csproj" />
     <Project Path="tests/ProrataManager.Application.Tests/ProrataManager.Application.Tests.csproj" />
+    <Project Path="tests/ProrataManager.Domain.Tests/ProrataManager.Domain.Tests.csproj" />
+    <Project Path="tests/ProrataManager.Infrastructure.Tests/ProrataManager.Infrastructure.Tests.csproj" />
   </Folder>
 </Solution>

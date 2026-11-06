@@ -1,7 +1,6 @@
 namespace ProrataManager.Api.IntegrationTests;
 
-public sealed class HealthEndpointTests(WebApplicationFactory<Program> factory)
-    : IClassFixture<WebApplicationFactory<Program>>
+public sealed class HealthEndpointTests(ProrataManagerApiFactory factory) : IClassFixture<ProrataManagerApiFactory>
 {
     [Fact]
     public async Task Get_health_returns_ok_status()
