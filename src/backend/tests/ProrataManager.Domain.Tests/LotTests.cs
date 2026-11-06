@@ -80,5 +80,8 @@ public sealed class LotTests
         Assert.Equal("amount", Assert.Throws<ArgumentOutOfRangeException>(() => lot.SetContractAmount(0m)).ParamName);
         Assert.Throws<ArgumentOutOfRangeException>(() => lot.SetContractAmount(10.123m));
         Assert.Equal(1_284_500.50m, lot.ContractAmount);
+
+        lot.SetContractAmount(null);
+        Assert.Null(lot.ContractAmount);
     }
 }

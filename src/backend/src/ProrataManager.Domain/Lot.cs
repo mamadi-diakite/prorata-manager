@@ -53,5 +53,7 @@ public sealed class Lot
     public void AssignTo(Guid? contractorId) =>
         ContractorId = contractorId is { } id ? Guard.NotEmpty(id, nameof(contractorId)) : null;
 
-    public void SetContractAmount(decimal amount) => ContractAmount = Money.Amount(amount, nameof(amount));
+    /// <param name="amount">Excluding VAT; null when the amount is not known yet.</param>
+    public void SetContractAmount(decimal? amount) =>
+        ContractAmount = amount is { } value ? Money.Amount(value, nameof(amount)) : null;
 }

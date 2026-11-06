@@ -9,6 +9,7 @@ public sealed class ApplicationDependencyInjectionTests
             .AddApplication()
             .AddSingleton(TimeProvider.System)
             .AddSingleton<IUserRepository, InMemoryUserRepository>()
+            .AddSingleton<ISiteRepository, InMemorySiteRepository>()
             .AddSingleton<IPasswordHasher, FakePasswordHasher>()
             .AddSingleton<IAccessTokenIssuer, FakeTokenIssuer>();
 
@@ -17,5 +18,6 @@ public sealed class ApplicationDependencyInjectionTests
 
         Assert.NotNull(scope.ServiceProvider.GetService<AuthService>());
         Assert.NotNull(scope.ServiceProvider.GetService<OrganizationService>());
+        Assert.NotNull(scope.ServiceProvider.GetService<SiteService>());
     }
 }

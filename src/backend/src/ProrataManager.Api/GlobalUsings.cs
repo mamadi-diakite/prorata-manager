@@ -9,6 +9,8 @@ global using ProrataManager.Application;
 global using ProrataManager.Application.Auth;
 global using ProrataManager.Application.Contracts.Auth;
 global using ProrataManager.Application.Contracts.Organizations;
+global using ProrataManager.Application.Contracts.Sites;
 global using ProrataManager.Application.Organizations;
+global using ProrataManager.Application.Sites;
 global using ProrataManager.Domain;
 global using ProrataManager.Infrastructure;

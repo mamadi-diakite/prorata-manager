@@ -14,6 +14,7 @@ global using Microsoft.IdentityModel.Tokens;
 global using ProrataManager.Api.Auth;
 global using ProrataManager.Application.Contracts.Auth;
 global using ProrataManager.Application.Contracts.Organizations;
+global using ProrataManager.Application.Contracts.Sites;
 global using ProrataManager.Domain;
 global using ProrataManager.Infrastructure.Persistence;
 global using ProrataManager.Infrastructure.Seeding;

@@ -33,6 +33,41 @@ internal sealed class InMemoryUserRepository : IUserRepository
     }
 }
 
+internal sealed class InMemorySiteRepository : ISiteRepository
+{
+    public List<Site> Sites { get; } = [];
+
+    public List<Lot> Lots { get; } = [];
+
+    public List<Contractor> Contractors { get; } = [];
+
+    public int SaveCount { get; private set; }
+
+    public Task<IReadOnlyList<Site>> ListAsync(Guid organizationId, CancellationToken cancellationToken) =>
+        Task.FromResult<IReadOnlyList<Site>>([.. Sites.Where(s => s.OrganizationId == organizationId).OrderBy(s => s.Name)]);
+
+    public Task<Site?> FindAsync(Guid organizationId, Guid siteId, CancellationToken cancellationToken) =>
+        Task.FromResult(Sites.SingleOrDefault(s => s.Id == siteId && s.OrganizationId == organizationId));
+
+    public Task<IReadOnlyList<Lot>> ListLotsAsync(IReadOnlyCollection<Guid> siteIds, CancellationToken cancellationToken) =>
+        Task.FromResult<IReadOnlyList<Lot>>([.. Lots.Where(l => siteIds.Contains(l.SiteId))]);
+
+    public Task<IReadOnlyList<Contractor>> ListContractorsAsync(IReadOnlyCollection<Guid> siteIds, CancellationToken cancellationToken) =>
+        Task.FromResult<IReadOnlyList<Contractor>>([.. Contractors.Where(c => siteIds.Contains(c.SiteId))]);
+
+    public void Add(Site site) => Sites.Add(site);
+
+    public void Add(Lot lot) => Lots.Add(lot);
+
+    public void Add(Contractor contractor) => Contractors.Add(contractor);
+
+    public Task SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        SaveCount++;
+        return Task.CompletedTask;
+    }
+}
+
 /// <summary>Readable fake: the hash is the password with a prefix.</summary>
 internal sealed class FakePasswordHasher : IPasswordHasher
 {

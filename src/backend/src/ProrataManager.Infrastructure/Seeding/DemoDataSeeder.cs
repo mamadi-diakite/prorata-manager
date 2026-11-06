@@ -55,11 +55,7 @@ public sealed class DemoDataSeeder(ProrataManagerDbContext db, IPasswordHasher p
         {
             var lot = new Lot(site.Id, demoLot.Number, demoLot.Name, demoLot.Family);
             lot.AssignTo(demoLot.Contractor is { } name ? contractors[name].Id : null);
-            if (demoLot.ContractAmount is { } amount)
-            {
-                lot.SetContractAmount(amount);
-            }
-
+            lot.SetContractAmount(demoLot.ContractAmount);
             db.Lots.Add(lot);
         }
     }

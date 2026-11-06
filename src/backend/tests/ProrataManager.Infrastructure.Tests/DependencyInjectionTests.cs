@@ -17,6 +17,7 @@ public sealed class DependencyInjectionTests
         using var scope = provider.CreateScope();
 
         Assert.IsType<UserRepository>(scope.ServiceProvider.GetRequiredService<IUserRepository>());
+        Assert.IsType<SiteRepository>(scope.ServiceProvider.GetRequiredService<ISiteRepository>());
         Assert.IsType<IdentityPasswordHasher>(provider.GetRequiredService<IPasswordHasher>());
         Assert.Same(TimeProvider.System, provider.GetRequiredService<TimeProvider>());
     }

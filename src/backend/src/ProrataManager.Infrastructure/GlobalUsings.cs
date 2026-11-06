@@ -6,6 +6,7 @@ global using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
 global using ProrataManager.Application.Security;
+global using ProrataManager.Application.Sites;
 global using ProrataManager.Application.Users;
 global using ProrataManager.Domain;
 global using ProrataManager.Infrastructure.Persistence;
