@@ -14,10 +14,12 @@ public class ProrataManagerApiFactory : WebApplicationFactory<Program>
 
     protected virtual string SigningKey => TestSigningKey;
 
+    protected virtual string ConnectionString => $"Data Source={Path.Combine(_root, "app.db")}";
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment(EnvironmentName);
-        builder.UseSetting("ConnectionStrings:Default", $"Data Source={Path.Combine(_root, "app.db")}");
+        builder.UseSetting("ConnectionStrings:Default", ConnectionString);
         builder.UseSetting("Database:ApplyMigrationsOnStartup", "true");
         builder.UseSetting("Database:SeedDemoData", SeedDemoData.ToString());
         builder.UseSetting("Jwt:SigningKey", SigningKey);
@@ -50,4 +52,9 @@ public sealed class ProductionDemoDataApiFactory : ProrataManagerApiFactory
 public sealed class NoSigningKeyApiFactory : ProrataManagerApiFactory
 {
     protected override string SigningKey => string.Empty;
+}
+
+public sealed class NoConnectionStringApiFactory : ProrataManagerApiFactory
+{
+    protected override string ConnectionString => string.Empty;
 }
